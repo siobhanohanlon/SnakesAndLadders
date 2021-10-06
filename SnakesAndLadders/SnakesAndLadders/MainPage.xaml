@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SnakesAndLadders.MainPage">
+
+    <!--  main content stack layout  -->
+    <StackLayout>
+
+        <!--  Grid for the game board  -->
+        <Grid BackgroundColor="Gray" 
+              Margin="25" 
+              HeightRequest="400" 
+              WidthRequest="400" 
+              HorizontalOptions="Center" 
+              VerticalOptions="Center" 
+              ColumnSpacing="1" 
+              RowSpacing="1">
+
+            <!--  my grid has rows and columns so need to declare this 
+                Each grid must have a set of RowDefinitions and ColumnDefinitions  -->
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--  set an image in the background of the grid  -->
+            <Image Source="SnakesAndLadders.png" 
+                   Grid.Row="0" 
+                   Grid.Column="0" 
+                   Grid.RowSpan="10" 
+                   Grid.ColumnSpan="10"/>
+
+            <!--  default value of Grid.Row and Grid.Column is 0  -->
+            <BoxView BackgroundColor="Red" 
+                     CornerRadius="3" 
+                     Grid.Row="9" 
+                     Grid.Column="0"/>
+
+            <BoxView BackgroundColor="Blue" 
+                     CornerRadius="3" 
+                     Grid.Row="9" 
+                     Grid.Column="0"/>
+
+            <BoxView BackgroundColor="Green" 
+                     CornerRadius="3" 
+                     Grid.Row="9" 
+                     Grid.Column="0"/>
+
+            <BoxView BackgroundColor="Yellow" 
+                     CornerRadius="3" 
+                     Grid.Row="9" 
+                     Grid.Column="0"/>
+
+            <BoxView x:Name="BoxPurple"
+                     BackgroundColor="Purple" 
+                     CornerRadius="3" 
+                     Grid.Row="9" 
+                     Grid.Column="0"/>
+        </Grid>
+    
+        <!-- Layout for Entry and Button -->
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="Center" 
+                     Margin="10" 
+                     BackgroundColor="LightGreen">
+
+            <!-- Row Entry Text -->
+            <Label Text="Row: " 
+                   Margin="0, 0, 1, 0" 
+                   VerticalTextAlignment="End"/>
+
+            <!-- Enter Row num -->
+            <Entry x:Name="EntryRow" 
+                   Placeholder="1" 
+                   Margin="1, 0, 2, 0"/>
+
+            <!-- Collumn Entry Text -->
+            <Label Text="Col: " 
+                   Margin="2, 0, 1, 0" 
+                   VerticalTextAlignment="End"/>
+
+            <!-- Enter Collumn num -->
+            <Entry x:Name="EntryCol" 
+                   Placeholder="2" 
+                   Margin="1, 0, 2, 0"/>
+
+            <!-- Button -->
+            <Button x:Name="BtnSet" 
+                    Text="Set Position" 
+                    Margin="2, 0, 0, 0" 
+                    Clicked="BtnSet_Clicked"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
