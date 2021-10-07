@@ -29,6 +29,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -42,41 +44,45 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!--  set an image in the background of the grid  -->
+            <!--Image in the background of the grid  -->
             <Image Source="SnakesAndLadders.png" 
-                   Grid.Row="0" 
-                   Grid.Column="0" 
+                   Grid.Row="1" 
+                   Grid.Column="1" 
                    Grid.RowSpan="10" 
                    Grid.ColumnSpan="10"/>
 
-            <!--  default value of Grid.Row and Grid.Column is 0  -->
-            <BoxView BackgroundColor="Red" 
-                     CornerRadius="3" 
-                     Grid.Row="9" 
-                     Grid.Column="0"/>
+            <!--Default value of Grid.Row and Grid.Column is 0 
+                As board works from bottom up start is (9,0)-->
+            <BoxView BackgroundColor="Red" CornerRadius="3" 
+                     Grid.Row="11" Grid.Column="0"/>
+            <Label Text="P1" Grid.Row="11" Grid.Column="0"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="Medium"/>
 
             <BoxView BackgroundColor="Blue" 
                      CornerRadius="3" 
-                     Grid.Row="9" 
-                     Grid.Column="0"/>
+                     Grid.Row="11"
+                     Grid.Column="1"/>
 
             <BoxView BackgroundColor="Green" 
                      CornerRadius="3" 
-                     Grid.Row="9" 
-                     Grid.Column="0"/>
+                     Grid.Row="11" 
+                     Grid.Column="2"/>
 
             <BoxView BackgroundColor="Yellow" 
                      CornerRadius="3" 
-                     Grid.Row="9" 
-                     Grid.Column="0"/>
+                     Grid.Row="11" 
+                     Grid.Column="3"/>
 
             <BoxView x:Name="BoxPurple"
                      BackgroundColor="Purple" 
                      CornerRadius="3" 
-                     Grid.Row="9" 
-                     Grid.Column="0"/>
+                     Grid.Row="11" 
+                     Grid.Column="4"/>
         </Grid>
     
         <!-- Layout for Entry and Button -->
@@ -106,10 +112,12 @@
                    Margin="1, 0, 2, 0"/>
 
             <!-- Button -->
-            <Button x:Name="BtnSet" 
+            <Button x:Name="BtnRollDice" 
                     Text="Set Position" 
                     Margin="2, 0, 0, 0" 
-                    Clicked="BtnSet_Clicked"/>
+                    Clicked="BtnRollDice_Clicked"/>
+            <Label Text="-" Margin="0,0,1,0"
+                   VerticalTextAlignment="Center"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

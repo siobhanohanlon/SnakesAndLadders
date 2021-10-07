@@ -15,15 +15,8 @@ namespace SnakesAndLadders
             InitializeComponent();
         }
 
-        private void BtnSet_Clicked(object sender, EventArgs e)
+        private void BtnRollDice_Clicked(object sender, EventArgs e)
         {
-            /*
-             * move the purple box around the screen to the square specified by the user.
-             * user is going to be reasonable and not break the system
-             * values between 0-4 only.
-             * retrieve the value from the entry boxes (need variables)
-             * set the Grid.Row and the Grid.Column value on the purple box.
-             */
             int row = 0, column = 0;    // avoid a null assignment error - have a default value
             // retrieve values
             row = Convert.ToInt32(EntryRow.Text);
