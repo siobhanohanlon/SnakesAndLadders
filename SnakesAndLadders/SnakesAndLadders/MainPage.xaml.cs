@@ -10,8 +10,9 @@ namespace SnakesAndLadders
 {
     public partial class MainPage : ContentPage
     {
-        //Constant
+        //Constant to check if player on board
         const int FIRST_GAME_ROW = 10, FIRST_GAME_COLUMN = 1;
+        const int GAME_START_ROW = 11;
 
         //Create instance of random
         Random random;
@@ -37,22 +38,45 @@ namespace SnakesAndLadders
             LblDiceRoll.Text = diceRoll.ToString();
 
             //Move piece, currently only purple
-            MovePiece();
+            MovePiece(diceRoll);
         }
 
-        private void MovePiece()
+        private void MovePiece(int diceRoll)
         {
             //Variables
             //Must tell code what i want it to be so use (int) before it
             int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
+            int currentColumn;
 
-            //If piece is not on board, move to square 1 on board (10,1)
-            if (currentRow == 11)
+            //First Move
+            if (currentRow == GAME_START_ROW)
             {
+                //Put piece on board
                 PurplePiece.SetValue(Grid.RowProperty, FIRST_GAME_ROW);
-                PurplePiece.SetValue(Grid.ColumnProperty, FIRST_GAME_COLUMN;
+                PurplePiece.SetValue(Grid.ColumnProperty, FIRST_GAME_COLUMN);
+
+                //Adjust diceroll as first move is adding piece to board
+                diceRoll--;
+            }
+
+            //Move piece by diceroll amount
+            currentColumn = (int)PurplePiece.GetValue(Grid.ColumnProperty);
+            currentColumn += diceRoll;
+            PurplePiece.SetValue(Grid.ColumnProperty, currentColumn);
+
+            //When roll goes over space on board
+            int over = (diceRoll + currentColumn);
+            if (over > 10)
+            {
+                over -= 10;
+
+                int row = ((int)PurplePiece.GetValue(Grid.RowProperty)+1);
+                int column = ((int)PurplePiece.GetValue(Grid.ColumnProperty)-10);
+                
+
+                PurplePiece.SetValue(Grid.RowProperty, row);
+                PurplePiece.SetValue(Grid.ColumnProperty, column);
             }
         }
-
     }
 }

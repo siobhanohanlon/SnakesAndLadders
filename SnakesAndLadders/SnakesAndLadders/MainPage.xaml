@@ -91,26 +91,6 @@
                      Margin="10" 
                      BackgroundColor="LightGreen">
 
-            <!-- Row Entry Text -->
-            <Label Text="Row: " 
-                   Margin="0, 0, 1, 0" 
-                   VerticalTextAlignment="End"/>
-
-            <!-- Enter Row num -->
-            <Entry x:Name="EntryRow" 
-                   Placeholder="1" 
-                   Margin="1, 0, 2, 0"/>
-
-            <!-- Collumn Entry Text -->
-            <Label Text="Col: " 
-                   Margin="2, 0, 1, 0" 
-                   VerticalTextAlignment="End"/>
-
-            <!-- Enter Collumn num -->
-            <Entry x:Name="EntryCol" 
-                   Placeholder="2" 
-                   Margin="1, 0, 2, 0"/>
-
             <!-- Button -->
             <Button x:Name="BtnRollDice" 
                     Text="Roll Dice" 
