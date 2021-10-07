@@ -10,6 +10,12 @@ namespace SnakesAndLadders
 {
     public partial class MainPage : ContentPage
     {
+        //Constant
+        const int FIRST_GAME_ROW = 10, FIRST_GAME_COLUMN = 1;
+
+        //Create instance of random
+        Random random;
+
         public MainPage()
         {
             InitializeComponent();
@@ -17,20 +23,36 @@ namespace SnakesAndLadders
 
         private void BtnRollDice_Clicked(object sender, EventArgs e)
         {
-            int row = 0, column = 0;    // avoid a null assignment error - have a default value
-            // retrieve values
-            row = Convert.ToInt32(EntryRow.Text);
-            column = Convert.ToInt32(EntryCol.Text);
+            //Variables
+            int diceRoll = 0;
+            
+            //Generate a random number between 1 and 6
+            if(random == null)
+            {
+                random = new Random();
+            }
 
-            /*
-             * set the purple box position.
-             * The Grid.Row and Grid.Column properties are "shared" between the grid and the box
-             * The grid owns the square, the box wants to use it.
-             * it gets set using a method called SetValue for shared properties
-             */
-            BoxPurple.SetValue(Grid.RowProperty, row);
-            BoxPurple.SetValue(Grid.ColumnProperty, column);
+            //Set label to dice number
+            diceRoll = random.Next(1, 7);
+            LblDiceRoll.Text = diceRoll.ToString();
 
+            //Move piece, currently only purple
+            MovePiece();
         }
+
+        private void MovePiece()
+        {
+            //Variables
+            //Must tell code what i want it to be so use (int) before it
+            int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
+
+            //If piece is not on board, move to square 1 on board (10,1)
+            if (currentRow == 11)
+            {
+                PurplePiece.SetValue(Grid.RowProperty, FIRST_GAME_ROW);
+                PurplePiece.SetValue(Grid.ColumnProperty, FIRST_GAME_COLUMN;
+            }
+        }
+
     }
 }
