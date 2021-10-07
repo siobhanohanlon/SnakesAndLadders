@@ -11,8 +11,9 @@ namespace SnakesAndLadders
     public partial class MainPage : ContentPage
     {
         //Constant to check if player on board
-        const int FIRST_GAME_ROW = 10, FIRST_GAME_COLUMN = 1;
         const int GAME_START_ROW = 11;
+        const int BOARD_RHS = 10, BOARD_LHS = 1;
+        const int BOARD_TOP = 1, BOARD_BOTTOM = 10;
 
         //Create instance of random
         Random random;
@@ -38,10 +39,11 @@ namespace SnakesAndLadders
             LblDiceRoll.Text = diceRoll.ToString();
 
             //Move piece, currently only purple
-            MovePiece(diceRoll);
+            MovePiece1(diceRoll);
+            MovePieceSecondAttempt(diceRoll);
         }
 
-        private void MovePiece(int diceRoll)
+        private void MovePiece1(int diceRoll)
         {
             //Variables
             //Must tell code what i want it to be so use (int) before it
@@ -52,8 +54,8 @@ namespace SnakesAndLadders
             if (currentRow == GAME_START_ROW)
             {
                 //Put piece on board
-                PurplePiece.SetValue(Grid.RowProperty, FIRST_GAME_ROW);
-                PurplePiece.SetValue(Grid.ColumnProperty, FIRST_GAME_COLUMN);
+                PurplePiece.SetValue(Grid.RowProperty, BOARD_BOTTOM);
+                PurplePiece.SetValue(Grid.ColumnProperty, BOARD_LHS);
 
                 //Adjust diceroll as first move is adding piece to board
                 diceRoll--;
@@ -63,20 +65,87 @@ namespace SnakesAndLadders
             currentColumn = (int)PurplePiece.GetValue(Grid.ColumnProperty);
             currentColumn += diceRoll;
             PurplePiece.SetValue(Grid.ColumnProperty, currentColumn);
+        }
 
-            //When roll goes over space on board
-            int over = (diceRoll + currentColumn);
-            if (over > 10)
+        private void MovePieceSecondAttempt(int diceRoll)
+        {
+            int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
+            int currentCol;
+
+            if(currentRow == GAME_START_ROW)
             {
-                over -= 10;
+                //Put piece on board
+                PurplePiece.SetValue(Grid.RowProperty, BOARD_BOTTOM);
+                PurplePiece.SetValue(Grid.ColumnProperty, BOARD_LHS);
 
-                int row = ((int)PurplePiece.GetValue(Grid.RowProperty)+1);
-                int column = ((int)PurplePiece.GetValue(Grid.ColumnProperty)-10);
-                
-
-                PurplePiece.SetValue(Grid.RowProperty, row);
-                PurplePiece.SetValue(Grid.ColumnProperty, column);
+                //Adjust diceroll as first move is adding piece to board
+                diceRoll--;
             }
+
+            //Piece is on square 1
+            currentCol = (int)PurplePiece.GetValue(Grid.ColumnProperty);
+            
+            //Wont go off board
+            if((BOARD_RHS - diceRoll) >= currentCol)
+            {
+                //Move right Method
+                MoveRight(PurplePiece, diceRoll)
+                currentCol += diceRoll;
+                PurplePiece.SetValue(Grid.ColumnProperty, currentCol);
+            }
+
+            //Dice roll over left on board
+            //Diceroll > BOARD_RHS - currentcol
+            else
+            {
+                //Move right
+                int move = (BOARD_RHS - currentCol);
+                MoveRight(PurplePiece, move);
+                diceRoll -= move;
+
+                //if greater than 0
+                if(diceRoll>0)
+                {
+                    //move up a row
+                    MoveUpRow(PurplePiece);
+                    diceRoll--;
+
+                    //Move Left
+                    MoveLeft(PurplePiece, diceRoll);
+                }
+            }
+        }
+
+        //Move Right Function
+        private void MoveRight(BoxView Piece, int Spaces)
+        {
+            //Get current row
+            int currentCol = (int)PurplePiece.GetValue(Grid.ColumnProperty);
+
+            //Change collumn movements by dice roll
+            int move= (currentCol + Spaces);
+            Piece.SetValue(Grid.ColumnProperty, move);
+        }
+
+        //Move Up Row
+        private void MoveUpRow(BoxView Piece)
+        {
+            //Find current row
+            int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
+
+            //Increase row by 1
+            Piece.SetValue(Grid.RowProperty, currentRow++);
+        }
+
+        //Move Left
+        private void MoveLeft(BoxView Piece, int Spaces)
+        {
+            //find current Columnn
+            int currentCol = (int)PurplePiece.GetValue(Grid.ColumnProperty);
+
+            //Change collumn movements by diceroll
+            int move = (currentCol - Spaces);
+            Piece.SetValue(Grid.ColumnProperty, move);
         }
     }
 }
