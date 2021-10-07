@@ -39,35 +39,10 @@ namespace SnakesAndLadders
             LblDiceRoll.Text = diceRoll.ToString();
 
             //Move piece, currently only purple
-            MovePiece1(diceRoll);
-            MovePieceSecondAttempt(diceRoll);
+            MovePiece(diceRoll);
         }
 
-        private void MovePiece1(int diceRoll)
-        {
-            //Variables
-            //Must tell code what i want it to be so use (int) before it
-            int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
-            int currentColumn;
-
-            //First Move
-            if (currentRow == GAME_START_ROW)
-            {
-                //Put piece on board
-                PurplePiece.SetValue(Grid.RowProperty, BOARD_BOTTOM);
-                PurplePiece.SetValue(Grid.ColumnProperty, BOARD_LHS);
-
-                //Adjust diceroll as first move is adding piece to board
-                diceRoll--;
-            }
-
-            //Move piece by diceroll amount
-            currentColumn = (int)PurplePiece.GetValue(Grid.ColumnProperty);
-            currentColumn += diceRoll;
-            PurplePiece.SetValue(Grid.ColumnProperty, currentColumn);
-        }
-
-        private void MovePieceSecondAttempt(int diceRoll)
+        private void MovePiece(int diceRoll)
         {
             int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
             int currentCol;
@@ -89,7 +64,7 @@ namespace SnakesAndLadders
             if((BOARD_RHS - diceRoll) >= currentCol)
             {
                 //Move right Method
-                MoveRight(PurplePiece, diceRoll)
+                MoveRight(PurplePiece, diceRoll);
                 currentCol += diceRoll;
                 PurplePiece.SetValue(Grid.ColumnProperty, currentCol);
             }
@@ -106,7 +81,7 @@ namespace SnakesAndLadders
                 //if greater than 0
                 if(diceRoll>0)
                 {
-                    //move up a row
+                    //Move up a row
                     MoveUpRow(PurplePiece);
                     diceRoll--;
 
@@ -131,10 +106,10 @@ namespace SnakesAndLadders
         private void MoveUpRow(BoxView Piece)
         {
             //Find current row
-            int currentRow = (int)PurplePiece.GetValue(Grid.RowProperty);
+            int currentR = (int)PurplePiece.GetValue(Grid.RowProperty);
 
-            //Increase row by 1
-            Piece.SetValue(Grid.RowProperty, currentRow++);
+            //Increase row by 1, must minus as starting at bottom
+            Piece.SetValue(Grid.RowProperty, currentR);
         }
 
         //Move Left
