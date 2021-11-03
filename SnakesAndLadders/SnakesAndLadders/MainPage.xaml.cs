@@ -10,29 +10,26 @@ namespace SnakesAndLadders
 {
     public partial class MainPage : ContentPage
     {
-        const int GAME_START_ROW = 11;
-        const int RHS_COL = 10;
-        const int LHS_COL = 1;
-        const int TOP_ROW = 1;
-        const int BOTTOM_ROW = 10;
-        const int NUMBER_OF_SNAKES = 3;
-        const int NUMBER_OF_LADDERS = 3;
-        const int MAX_PLAYERS = 5;
+        //Constants
+        const int GAME_START_ROW = 11; //Start Row
+        const int RHS_COL = 10, LHS_COL = 1, TOP_ROW = 1, BOTTOM_ROW = 10; //Row and Column dementions
+        const int NUMBER_OF_SNAKES = 3, NUMBER_OF_LADDERS = 3; //# of snakes and ladders
+        const int MAX_PLAYERS = 5; //# of players
+        //Strings
         const string ROLL_DICE = "Roll Dice";
         const string NEW_GAME = "New Game";
         const string PLAYER = "Player";
 
+        //Current player
         int _currentPlayer = 1;
-        /*
-         * nice if the boxviews were named Player1, Player2 etc
-         * instead of PurplePiece
-         * name of current is "Player" + _currentPlayer.ToString()
-         */
         bool _IsLR;
         int _LR;
         int _currentBoundary;
+
+        //Create a random class
         Random random;
 
+        //Array for snakes
         int[][] _snakes;
 
         public MainPage()
@@ -42,10 +39,7 @@ namespace SnakesAndLadders
             SetUpSnakes();
         }
 
-        #region Initialise the board, snakes, ladders
-        /// <summary>
-        /// Reset the Board for New Game. Repositions the pieces on the board, set the direction of movement.
-        /// </summary>
+        //Reset the Board for New Game. Repositions the pieces on the board, set the direction of movement.
         private void SetUpNewGame()
         {
             //_IsLR = true;   // always starts on Row 10 - moving Left to right
@@ -70,8 +64,6 @@ namespace SnakesAndLadders
         }
 
 
-
-        #endregion
 
         #region All the movement methods for horizontal, vertical, snakes, ladders
         /// <summary>
