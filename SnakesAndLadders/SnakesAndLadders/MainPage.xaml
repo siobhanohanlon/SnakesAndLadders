@@ -5,100 +5,65 @@
 
     <!--  main content stack layout  -->
     <StackLayout>
-
-        <!--  Grid for the game board  -->
-        <Grid BackgroundColor="Gray" 
-              Margin="25" 
-              HeightRequest="400" 
-              WidthRequest="400" 
-              HorizontalOptions="Center" 
-              VerticalOptions="Center" 
-              ColumnSpacing="1" 
-              RowSpacing="1">
-
-            <!--  my grid has rows and columns so need to declare this 
-                Each grid must have a set of RowDefinitions and ColumnDefinitions  -->
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <!--Image in the background of the grid  -->
-            <Image Source="SnakesAndLadders.png" 
-                   Grid.Row="1" 
-                   Grid.Column="1" 
-                   Grid.RowSpan="10" 
-                   Grid.ColumnSpan="10"/>
-
-            <!--Default value of Grid.Row and Grid.Column is 0 
-                As board works from bottom up start is (9,0)-->
-            <BoxView BackgroundColor="Red" CornerRadius="3" 
-                     Grid.Row="11" Grid.Column="0"/>
-            <Label Text="P1" Grid.Row="11" Grid.Column="0"
-                   HorizontalOptions="Center" VerticalOptions="Center"
-                   FontSize="Medium"/>
-
-            <BoxView BackgroundColor="Blue" 
-                     CornerRadius="3" 
-                     Grid.Row="11"
-                     Grid.Column="1"/>
-
-            <BoxView BackgroundColor="Green" 
-                     CornerRadius="3" 
-                     Grid.Row="11" 
-                     Grid.Column="2"/>
-
-            <BoxView BackgroundColor="Yellow" 
-                     CornerRadius="3" 
-                     Grid.Row="11" 
-                     Grid.Column="3"/>
-
-            <BoxView x:Name="PurplePiece"
-                     BackgroundColor="Purple" 
-                     CornerRadius="3" 
-                     Grid.Row="11" 
-                     Grid.Column="4"/>
-        </Grid>
-    
-        <!-- Layout for Entry and Button -->
-        <StackLayout Orientation="Horizontal" 
-                     HorizontalOptions="Center" 
-                     Margin="10" 
-                     BackgroundColor="LightGreen">
-
-            <!-- Button -->
-            <Button x:Name="BtnRollDice" 
-                    Text="Roll Dice" 
-                    Margin="0, 0, 4, 0" 
-                    Clicked="BtnRollDice_Clicked"/>
-            <Label x:Name="LblDiceRoll"  Text="-" Margin="2, 0, 0, 0"
-                   VerticalTextAlignment="Center" FontSize="Medium"
-                   FontAttributes="Bold"/>
-        </StackLayout>
+    <!--    Grid for the game board    -->
+    <Grid x:Name="GrdGameLayout" BackgroundColor="Gray" Margin="25" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="1" RowSpacing="1">
+        <!--    my grid has rows and columns so need to declare this 
+                Each grid must have a set of RowDefinitions and ColumnDefinitions
+                here, going to have 12 x 12 to allow space around the edge.   -->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--    set an image in the background of the grid    -->
+        <Image Source="SnakesAndLadders.png" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="10"/>
+        
+        <!--    default value of Grid.Row and Grid.Column is 0    -->
+        <BoxView BackgroundColor="Red" CornerRadius="10" Grid.Row="11" Grid.Column="0"/>
+        <BoxView x:Name="Player1" BackgroundColor="Red" CornerRadius="3" Grid.Row="11" Grid.Column="0"/>
+        <Label Text="P1" Grid.Row="11" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+        <BoxView BackgroundColor="Blue" CornerRadius="10" Grid.Row="11" Grid.Column="1"/>
+        <BoxView x:Name="Player2" BackgroundColor="Blue" CornerRadius="10" Grid.Row="11" Grid.Column="1"/>
+        <Label Text="P2" Grid.Row="11" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+        <BoxView BackgroundColor="Green" CornerRadius="10" Grid.Row="11" Grid.Column="2"/>
+        <BoxView x:Name="Player3" BackgroundColor="Green" CornerRadius="10" Grid.Row="11" Grid.Column="2"/>
+        <Label Text="P3" Grid.Row="11" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+        <BoxView BackgroundColor="Yellow" CornerRadius="10" Grid.Row="11" Grid.Column="3"/>
+        <BoxView x:Name="Player4" BackgroundColor="Yellow" CornerRadius="10" Grid.Row="11" Grid.Column="3"/>
+        <Label Text="P4" Grid.Row="11" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+        <BoxView BackgroundColor="Purple" CornerRadius="10" Grid.Row="11" Grid.Column="4"/>
+        <BoxView x:Name="Player5" BackgroundColor="Purple" CornerRadius="10" Grid.Row="11" Grid.Column="4"/>
+        <Label Text="P5" Grid.Row="11" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+        <Label x:Name="LblPlayer" Text="Player 1" IsVisible="False" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="3"/>
+    </Grid>
+    <!--   stacklayout for dice and rolling   -->
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+        <Button x:Name="BtnRollDice" Text="New Game" Margin="0, 0, 4, 0" Clicked="BtnRollDice_Clicked"/>
+        <Label x:Name="LblDiceRoll" Text="-" Margin="2, 0, 0, 0" VerticalTextAlignment="End" FontSize="Medium" FontAttributes="Bold"/>
+    </StackLayout>
     </StackLayout>
 </ContentPage>
